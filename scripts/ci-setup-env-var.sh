@@ -37,15 +37,21 @@ echo "Download ssh key from parameter store and copy it to ~/.ssh"
 SSH_PRIVATE_KEY="/tvlk-secret/terraform-ci-cd/terraform-ci-cd/github-ssh-private-key"
 aws ssm get-parameters --name ${SSH_PRIVATE_KEY} --with-decryption --query "Parameters[*].{Value:Value}" --region ap-southeast-1 --output text > ~/.ssh/id_rsa || true
 echo "check if key exist and valid format"
-if [ -s ~/.ssh/id_rsa ] && ssh-keygen -l -f ~/.ssh/id_rsa
+if [ -s ~/.ssh/id_rsa ]
 then
     chmod 400 ~/.ssh/id_rsa
-    eval $(ssh-agent -s)
-    ssh-add /root/.ssh/id_rsa
-    ssh-keyscan github.com >> ~/.ssh/known_hosts
-    echo "Github ssh private key is set"
+    ssh-keygen -l -f ~/.ssh/id_rsa
+    if [ $1 -eq 0 ]
+    then
+        eval $(ssh-agent -s)
+        ssh-add /root/.ssh/id_rsa
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
+        echo "Github ssh private key is set"
+    else
+        echo "Invalid ssh private key format. Ignore setting up ssh key"
+    fi
 else
-    echo "Invalid ssh private key format. Ignore setting up ssh key"
+    echo "Couldn't find the private key"
 fi
 
 
