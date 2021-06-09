@@ -39,7 +39,7 @@ if [ -s ~/.ssh/id_rsa ]
 then
     chmod 400 ~/.ssh/id_rsa
     ssh-keygen -l -f ~/.ssh/id_rsa
-    if [ $1 -eq 0 ]
+    if [ $? -eq 0 ]
     then
         eval $(ssh-agent -s)
         ssh-add /root/.ssh/id_rsa
