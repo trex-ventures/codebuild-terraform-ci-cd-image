@@ -6,12 +6,12 @@ Docker image for Terrafocm CI/CD CodeBuild builds
 * Github app private key
   - Either this or both of this and a Github ssh private key must be set
   - Github app private key must be set in your AWS ssm with the key 
-    `/tvlk-secret/terraform-ci-cd/terraform-ci-cd/github-app-private-key`
+    `/trex-secret/terraform-ci-cd/terraform-ci-cd/github-app-private-key`
 
 * Github app ssh key
   - Either this or both of this and a Github app private key must be set
   - This ssh private key must be set in your AWS ssm with the key 
-    `/tvlk-secret/terraform-ci-cd/terraform-ci-cd/github-ssh-private-key`
+    `/trex-secret/terraform-ci-cd/terraform-ci-cd/github-ssh-private-key`
   - The public key portion must be added to a user with access to all of the 
     git repositories mentioned in the projects you are trying to build
   - The recommendation is to create a github 

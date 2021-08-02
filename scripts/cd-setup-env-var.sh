@@ -32,7 +32,7 @@ fi
 echo "Setting up ssh key."
 mkdir -p ~/.ssh
 echo "Download ssh key from parameter store and copy it to ~/.ssh"
-SSH_PRIVATE_KEY="/tvlk-secret/terraform-ci-cd/terraform-ci-cd/github-ssh-private-key"
+SSH_PRIVATE_KEY="/trex-secret/terraform-ci-cd/terraform-ci-cd/github-ssh-private-key"
 aws ssm get-parameters --name ${SSH_PRIVATE_KEY} --with-decryption --query "Parameters[*].{Value:Value}" --region ap-southeast-1 --output text > ~/.ssh/id_rsa || true
 echo "check if key exist and valid format"
 if [ -s ~/.ssh/id_rsa ]

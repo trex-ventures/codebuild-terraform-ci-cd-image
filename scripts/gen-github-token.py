@@ -4,12 +4,12 @@ import boto3
 import sys
 
 
-ssm_key = "/tvlk-secret/terraform-ci-cd/terraform-ci-cd/github-app-private-key"
+ssm_key = "/trex-secret/terraform-ci-cd/terraform-ci-cd/github-app-private-key"
 print("Looking for app private key at " + ssm_key)
 
 client = boto3.client('ssm')
 parameter_store = client.get_parameter(
-    Name="/tvlk-secret/terraform-ci-cd/terraform-ci-cd/github-app-private-key",
+    Name="/trex-secret/terraform-ci-cd/terraform-ci-cd/github-app-private-key",
     WithDecryption=True
 )
 

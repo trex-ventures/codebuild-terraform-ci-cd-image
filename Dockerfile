@@ -27,5 +27,6 @@ RUN python -m pip install --upgrade pip && \
 RUN tfenv install 0.11.15 &&\
     tfenv install 0.12.31 &&\
     tfenv install 0.13.7 &&\
+    tfenv install 1.0.3 &&\
     tfenv use 0.11.15
 COPY scripts/ /usr/local/bin/
